@@ -1,1 +1,49 @@
-/sample
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>hoge</title>
+</head>
+<body style="font-size:20px;">
+  <table border="0">
+    <tr>
+      <td align="right"><b>url : </b></td>
+      <td><input type="text" name="name"></td>
+    </tr>
+    <tr>
+      <td align="right"><b>Environment : </b></td>
+      <td>
+        <input type="radio" name="env" value="" checked="checked" >DEFAULT
+        <input type="radio" name="env" value="staging">STG
+        <input type="radio" name="env" value="develop">DEV
+      </td>
+    </tr>
+    <tr>
+      <td><a id='android' href="#">Android</a></td>
+    </tr>
+    <tr>
+      <td><a id='ios' href="#">iOS</a></td>
+    </tr>
+  </table>
+  <script type="text/javascript">
+  document.getElementById('android').addEventListener('click', function(e) {
+    window.location.href = "jp7gogo" + getEnviroment() + "://7gogo.jp/postRequest?url=" + getEncodedInputedURL();
+  });
+  document.getElementById('ios').addEventListener('click', function(e) {
+    window.location.href = "jp7gogo" + getEnviroment() + "://postRequest?url=" + getEncodedInputedURL();
+  });
+  function getEnviroment() {
+    radioList = document.getElementsByName("env");
+    for(i=0; i<radioList.length; i++){
+      if (radioList[i].checked) {
+        return radioList[i].value.toString();
+      }
+    }
+  }
+  function getEncodedInputedURL() {
+    urlString = document.getElementsByName("name")[0].value;
+    return encodeURIComponent(urlString);
+  }
+  </script>
+</body>
+</html>
