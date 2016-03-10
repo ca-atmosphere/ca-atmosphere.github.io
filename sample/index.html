@@ -27,7 +27,7 @@
   </table>
   <script type="text/javascript">
   document.getElementById('android').addEventListener('click', function(e) {
-    window.location.href = "jp7gogo" + getEnviroment() + "://7gogo.jp/postRequest?url=" + getEncodedInputedURL();
+    window.location.href = "jp7gogo" + getEnviroment() + "://" + getShortEnviroment() + "7gogo.jp/postRequest?url=" + getEncodedInputedURL();
   });
   document.getElementById('ios').addEventListener('click', function(e) {
     window.location.href = "jp7gogo" + getEnviroment() + "://postRequest?url=" + getEncodedInputedURL();
@@ -39,6 +39,15 @@
         return radioList[i].value.toString();
       }
     }
+  }
+  function getShortEnviroment() {
+    env = getEnviroment();
+    if (env == "staging") {
+      return "stg.";
+    } else if (env == "develop") {
+      return "dev.";
+    }
+    return ""
   }
   function getEncodedInputedURL() {
     urlString = document.getElementsByName("name")[0].value;
